@@ -4,6 +4,11 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 
+import { CaseStudies } from './collections/CaseStudies'
+import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
+import { Services } from './collections/Services'
+import { TeamMembers } from './collections/TeamMembers'
 import { Users } from './collections/Users'
 
 const filename = fileURLToPath(import.meta.url)
@@ -13,7 +18,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users],
+  collections: [Users, Media, Pages, CaseStudies, TeamMembers, Services],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
