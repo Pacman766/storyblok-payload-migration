@@ -1,23 +1,22 @@
 {
-  "name": "blueprint-blank-nextjs",
-  "version": "0.1.0",
+  "name": "storyblok-payload-migration",
+  "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "web",
+    "cms",
+    "migration"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@storyblok/react": "^5.4.22",
-    "next": "16.1.6",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@netlify/plugin-nextjs": "^5.15.8",
-    "eslint": "^10",
-    "eslint-config-next": "16.1.6"
-  }
+    "turbo": "^2.5.4"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "npm@10.9.2"
 }
