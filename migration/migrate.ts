@@ -1,5 +1,4 @@
 import 'dotenv/config'
-import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { getPayload } from 'payload'
@@ -387,9 +386,9 @@ async function main(): Promise<void> {
   // compiler options). tsx resolves this correctly at runtime.
   const __filename = fileURLToPath(import.meta.url)
   const __dirname = path.dirname(__filename)
-  const configPath = path.resolve(__dirname, '..', 'cms', 'src', 'payload.config.js')
+  const configPath = path.resolve(__dirname, '..', 'cms', 'src', 'payload.config.ts')
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const configModule = await (Function('p', 'return import(p)')(configPath)) as { default: unknown }
+  const configModule = await import(configPath) as { default: unknown }
   const payload = (await getPayload({ config: configModule.default as Parameters<typeof getPayload>[0]['config'] })) as unknown as PayloadInstance
 
   console.log('Fetching stories from Storyblok...')

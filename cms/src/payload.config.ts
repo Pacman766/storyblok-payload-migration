@@ -14,6 +14,9 @@ import { Users } from './collections/Users'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const secret = process.env.PAYLOAD_SECRET
+if (!secret) throw new Error('PAYLOAD_SECRET env var is required')
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -25,7 +28,7 @@ export default buildConfig({
     },
   }),
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
