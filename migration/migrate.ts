@@ -1,7 +1,14 @@
-import 'dotenv/config'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { readFile } from 'node:fs/promises'
+import dotenv from 'dotenv'
 import { getPayload } from 'payload'
+import config from '@payload-config'
+
+const moduleDir = path.dirname(fileURLToPath(import.meta.url))
+// dotenv's default only reads `.env`; our local values (DATABASE_URL,
+// PAYLOAD_SECRET, optional STORYBLOK_*) live in `.env.local`.
+dotenv.config({ path: path.resolve(moduleDir, '.env.local') })
 
 // ---------------------------------------------------------------------------
 // Storyblok API types
@@ -187,6 +194,19 @@ async function uploadMedia(
 // ---------------------------------------------------------------------------
 
 async function fetchAllStories(): Promise<SbStory[]> {
+  // Offline mode: read stories from a local JSON fixture (same shape as the
+  // Storyblok CDN response) instead of hitting the API. Lets the full
+  // transform + Local API import path run without a populated Storyblok space.
+  const fixture = process.env.STORYBLOK_FIXTURE
+  if (fixture) {
+    const fixturePath = path.isAbsolute(fixture) ? fixture : path.resolve(moduleDir, fixture)
+    console.log(`  Using fixture (offline): ${fixturePath}`)
+    const raw = await readFile(fixturePath, 'utf8')
+    const body = JSON.parse(raw) as SbStoriesResponse
+    console.log(`  Loaded ${body.stories.length} stories from fixture`)
+    return body.stories
+  }
+
   const token = process.env.STORYBLOK_DELIVERY_API_TOKEN
   if (!token) {
     throw new Error('STORYBLOK_DELIVERY_API_TOKEN is not set')
@@ -381,15 +401,12 @@ async function migrateServices(
 
 async function main(): Promise<void> {
   console.log('Loading Payload config...')
-  // Build the config path at runtime using a concatenated string so that tsc
-  // cannot statically resolve it into cms/ source files (which use incompatible
-  // compiler options). tsx resolves this correctly at runtime.
-  const __filename = fileURLToPath(import.meta.url)
-  const __dirname = path.dirname(__filename)
-  const configPath = path.resolve(__dirname, '..', 'cms', 'src', 'payload.config.ts')
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const configModule = await import(configPath) as { default: unknown }
-  const payload = (await getPayload({ config: configModule.default as Parameters<typeof getPayload>[0]['config'] })) as unknown as PayloadInstance
+  // Config is statically imported via the `@payload-config` alias (see top of
+  // file). Run with `payload run` (cwd = cms/, i.e. `npm run migrate -w @repo/cms`)
+  // so Payload's loader resolves the alias and the config's extensionless TS
+  // imports. Running this file directly with tsx fails: tsx CJS-transforms
+  // payload's `@next/env` import and the default export comes back undefined.
+  const payload = (await getPayload({ config })) as unknown as PayloadInstance
 
   console.log('Fetching stories from Storyblok...')
   const stories = await fetchAllStories()
@@ -412,7 +429,9 @@ async function main(): Promise<void> {
   )
 }
 
-main().catch((err) => {
+try {
+  await main()
+} catch (err) {
   console.error('Migration failed:', err instanceof Error ? err.message : err)
   process.exit(1)
-})
+}

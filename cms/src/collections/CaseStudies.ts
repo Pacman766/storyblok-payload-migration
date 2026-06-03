@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 
 export const CaseStudies: CollectionConfig = {
   slug: 'case-studies',
+  access: { read: () => true },
   admin: {
     useAsTitle: 'title',
   },

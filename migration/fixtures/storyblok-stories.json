@@ -1,0 +1,120 @@
+{
+  "stories": [
+    {
+      "name": "Home",
+      "slug": "home",
+      "content": {
+        "component": "page",
+        "body": [
+          {
+            "component": "hero",
+            "headline": "We build brands that move people",
+            "subheadline": "A full-service creative studio for ambitious teams.",
+            "cta_label": "Start a project",
+            "cta_url": "/contact",
+            "image": { "filename": "https://picsum.photos/id/1018/1200/600.jpg" }
+          },
+          {
+            "component": "testimonial",
+            "quote": "They turned our vague idea into a product our customers love.",
+            "author_name": "Maria Chen",
+            "author_role": "CEO, Northwind",
+            "author_photo": { "filename": "https://picsum.photos/id/1027/200/200.jpg" }
+          }
+        ]
+      }
+    },
+    {
+      "name": "About",
+      "slug": "about",
+      "content": {
+        "component": "page",
+        "body": [
+          {
+            "component": "hero",
+            "headline": "Small team, big outcomes",
+            "subheadline": "Designers, engineers and strategists under one roof.",
+            "cta_label": "Meet the team",
+            "cta_url": "/team",
+            "image": { "filename": "https://picsum.photos/id/1019/1200/600.jpg" }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Acme Rebrand",
+      "slug": "acme-rebrand",
+      "content": {
+        "component": "case_study",
+        "description": "Complete visual identity and design system for Acme's global relaunch.",
+        "cover_image": { "filename": "https://picsum.photos/id/180/800/600.jpg" },
+        "tags": ["Branding", "Design System", "Web"]
+      }
+    },
+    {
+      "name": "FinTech Mobile App",
+      "slug": "fintech-app",
+      "content": {
+        "component": "case_study",
+        "description": "End-to-end product design and front-end build for a consumer banking app.",
+        "cover_image": { "filename": "https://picsum.photos/id/119/800/600.jpg" },
+        "tags": ["Product", "Mobile", "Development"]
+      }
+    },
+    {
+      "name": "Jane Doe",
+      "slug": "jane-doe",
+      "content": {
+        "component": "team_member",
+        "name": "Jane Doe",
+        "role": "Creative Director",
+        "bio": "Leads brand strategy and art direction across all client work.",
+        "photo": { "filename": "https://picsum.photos/id/64/300/300.jpg" }
+      }
+    },
+    {
+      "name": "John Smith",
+      "slug": "john-smith",
+      "content": {
+        "component": "team_member",
+        "name": "John Smith",
+        "role": "Lead Engineer",
+        "bio": "Owns the front-end architecture and design-to-code pipeline.",
+        "photo": { "filename": "https://picsum.photos/id/91/300/300.jpg" }
+      }
+    },
+    {
+      "name": "Web Design",
+      "slug": "web-design",
+      "content": {
+        "component": "service_item",
+        "title": "Web Design",
+        "description": "Conversion-focused websites designed around your brand and goals.",
+        "icon": "layout"
+      }
+    },
+    {
+      "name": "Branding",
+      "slug": "branding",
+      "content": {
+        "component": "service_item",
+        "title": "Branding",
+        "description": "Identity systems, logos and guidelines that scale with you.",
+        "icon": "sparkles"
+      }
+    },
+    {
+      "name": "Development",
+      "slug": "development",
+      "content": {
+        "component": "service_item",
+        "title": "Development",
+        "description": "Production front-end builds on modern frameworks like Next.js.",
+        "icon": "code"
+      }
+    }
+  ],
+  "cv": 0,
+  "rels": [],
+  "links": []
+}

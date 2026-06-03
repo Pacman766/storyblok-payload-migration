@@ -1,4 +1,15 @@
 
+# Storyblok → Payload migration (monorepo)
+
+> **Полное руководство A→Я (создание Storyblok → миграция в Payload → деплой → запуск):
+> [`docs/GUIDE.md`](docs/GUIDE.md).** Краткая шпаргалка по запуску миграции —
+> [`migration/README.md`](migration/README.md). Архитектурные решения — [`docs/adr/`](docs/adr/).
+
+Этот репозиторий — монорепо (`web` = Storyblok-фронтенд, `cms` = Payload CMS,
+`migration` = скрипт переноса). Ниже — оригинальный README Storyblok-блюпринта (`web/`).
+
+---
+
 # Storyblok Core Space Blueprint: Next.js
 
 Integrate [Next.js](https://nextjs.org/) with [Storyblok](http://www.storyblok.com) as a headless CMS.

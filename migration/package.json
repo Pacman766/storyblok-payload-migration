@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "migrate": "npx tsx migrate.ts"
+    "migrate": "npm run migrate -w @repo/cms",
+    "reset": "npm run reset -w @repo/cms",
+    "migrate:fresh": "npm run reset -w @repo/cms && npm run migrate -w @repo/cms"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
