@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@payload-config": ["../cms/src/payload.config.ts"]
+    }
+  },
+  "include": ["migrate.ts"],
+  "exclude": ["node_modules", "../cms"]
+}
