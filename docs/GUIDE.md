@@ -487,8 +487,16 @@ STORYBLOK_FIXTURE=fixtures/storyblok-stories.json npm run migrate:fresh -w @repo
    Storyblok).
 2. **Фронтенд-страница `/migrated`:** `web/src/app/migrated/page.jsx` дёргает REST API
    Payload (`GET {NEXT_PUBLIC_PAYLOAD_URL}/api/<collection>?limit=100`) и выводит списки.
+   Каждый заголовок страницы — это ссылка на `/migrated/<slug>`, которая открывает
+   полный rendered контент страницы (блоки hero, testimonial и т.д.) через роут
+   `web/src/app/migrated/[slug]/page.jsx`.
+   
    Запуск: `npm run dev -w @repo/web`, открыть `/migrated`. Переменная
    `NEXT_PUBLIC_PAYLOAD_URL` (по умолчанию `http://localhost:3001`).
+   
+   **Offline-режим (без токена Storyblok):** catch-all маршрут `web/src/app/[[...slug]]/page.js`
+   gracefully возвращает styled 404 (`web/src/app/[[...slug]]/not-found.jsx`) вместо HTTP 500
+   для любых неизвестных URL (включая ссылки из мигрированного контента).
 
 ---
 

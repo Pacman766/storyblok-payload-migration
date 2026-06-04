@@ -13,7 +13,7 @@ Storyblok и Payload **сосуществуют**. Скрипт миграции
 |---|---|---|---|
 | **Storyblok «до»** | `web` → `/` (`[[...slug]]`) | живой Storyblok API | `STORYBLOK_DELIVERY_API_TOKEN` + наполненный space |
 | **Payload «после» (админка)** | `cms` → `/admin` | Payload + Postgres | `DATABASE_URL`, `PAYLOAD_SECRET` |
-| **Payload «после» (фронтенд)** | `web` → `/migrated` | Payload REST API | данные уже мигрированы + публичный `read` |
+| **Payload «после» (фронтенд)** | `web` → `/migrated` (список), `/migrated/[slug]` (страница) | Payload REST API | данные уже мигрированы + публичный `read` |
 
 «Всё только в Payload» — нет. После миграции от Storyblok можно **отказаться**, но это
 выбор, а не следствие миграции.
@@ -26,9 +26,8 @@ Storyblok и Payload **сосуществуют**. Скрипт миграции
 (точная копия ответа Storyblok CDN). Это позволяет прогнать весь путь миграции без
 живого space.
 
-- ✅ Работает: Payload-админка (`/admin`) и фронтенд `/migrated`.
-- ⚠️ Storyblok-маршрут `web/[[...slug]]` **не отрендерит** контент без токена. «До»
-  смотрится как сама фикстура (JSON) — это и есть исходные stories/bloks.
+- ✅ Работает: Payload-админка (`/admin`) и фронтенд `/migrated` (список и подробные страницы).
+- ⚠️ Storyblok-маршрут `web/[[...slug]]` **не отрендерит** контент без токена. Любые неизвестные маршруты (включая ссылки из мигрированного контента, например `/contact`, `/team`) вернут graceful 404 (`web/src/app/[[...slug]]/not-found.jsx`) вместо крэша.
 
 ### B. Полное «до → после» — нужен бесплатный аккаунт Storyblok
 
