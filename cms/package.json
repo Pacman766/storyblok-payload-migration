@@ -7,7 +7,7 @@
     "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start --port 3001",
-    "lint": "next lint",
+    "lint": "eslint src/",
     "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
     "migrate": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload run ../migration/migrate.ts",
     "reset": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload run ../migration/reset.ts"
@@ -24,10 +24,12 @@
     "sharp": "^0.32.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9",
     "@swc-node/register": "^1.11.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^9",
     "typescript": "^5"
   }
 }
