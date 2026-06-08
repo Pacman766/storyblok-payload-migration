@@ -1,6 +1,5 @@
 import './globals.css';
 import Link from 'next/link';
-import StoryblokProvider from '@/components/StoryblokProvider';
 
 export const metadata = {
 	title: 'Studio — Migrated Content',
@@ -10,9 +9,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	const currentYear = new Date().getFullYear();
 	return (
-		<StoryblokProvider>
-			<html lang="en">
-				<body>
+		<html lang="en">
+			<body>
 					<header className="site-header">
 						<div className="site-container site-header__inner">
 							<Link className="site-brand" href="/migrated">
@@ -33,21 +31,20 @@ export default function RootLayout({ children }) {
 						</div>
 					</header>
 
-					{children}
+				{children}
 
-					<footer className="site-footer">
-						<div className="site-container site-footer__inner">
-							<span className="site-footer__brand">Studio</span>
-							<span className="site-footer__meta">
-								Storyblok &rarr; Payload CMS migration
-							</span>
-							<span className="site-footer__copy">
-								All rights reserved &copy; {currentYear}
-							</span>
-						</div>
-					</footer>
-				</body>
-			</html>
-		</StoryblokProvider>
+				<footer className="site-footer">
+					<div className="site-container site-footer__inner">
+						<span className="site-footer__brand">Studio</span>
+						<span className="site-footer__meta">
+							Storyblok &rarr; Payload CMS migration
+						</span>
+						<span className="site-footer__copy">
+							All rights reserved &copy; {currentYear}
+						</span>
+					</div>
+				</footer>
+			</body>
+		</html>
 	);
 }
