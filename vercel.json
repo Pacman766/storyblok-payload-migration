@@ -3,5 +3,5 @@
   "buildCommand": "npx turbo run build --filter=@repo/web",
   "framework": "nextjs",
   "outputDirectory": "web/.next",
-  "installCommand": "npm install"
+  "installCommand": "npm install --ignore-scripts"
 }
