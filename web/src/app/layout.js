@@ -1,5 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
+import StoryblokProvider from '@/components/StoryblokProvider';
 
 export const metadata = {
 	title: 'Studio — Migrated Content',
@@ -8,9 +9,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	const currentYear = new Date().getFullYear();
+	const payloadUrl = process.env.NEXT_PUBLIC_PAYLOAD_URL ?? 'http://localhost:3001';
 	return (
-		<html lang="en">
-			<body>
+		<StoryblokProvider>
+			<html lang="en">
+				<body>
 					<header className="site-header">
 						<div className="site-container site-header__inner">
 							<Link className="site-brand" href="/migrated">
@@ -23,7 +26,7 @@ export default function RootLayout({ children }) {
 								</Link>
 								<a
 									className="site-nav__cta"
-									href="http://localhost:3001/admin"
+									href={`${payloadUrl}/admin`}
 								>
 									Payload Admin
 								</a>
@@ -31,20 +34,21 @@ export default function RootLayout({ children }) {
 						</div>
 					</header>
 
-				{children}
+					{children}
 
-				<footer className="site-footer">
-					<div className="site-container site-footer__inner">
-						<span className="site-footer__brand">Studio</span>
-						<span className="site-footer__meta">
-							Storyblok &rarr; Payload CMS migration
-						</span>
-						<span className="site-footer__copy">
-							All rights reserved &copy; {currentYear}
-						</span>
-					</div>
-				</footer>
-			</body>
-		</html>
+					<footer className="site-footer">
+						<div className="site-container site-footer__inner">
+							<span className="site-footer__brand">Studio</span>
+							<span className="site-footer__meta">
+								Storyblok &rarr; Payload CMS migration
+							</span>
+							<span className="site-footer__copy">
+								All rights reserved &copy; {currentYear}
+							</span>
+						</div>
+					</footer>
+				</body>
+			</html>
+		</StoryblokProvider>
 	);
 }
