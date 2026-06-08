@@ -11,7 +11,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "payload": "^3.0.0",
-    "tsx": "^4.19.2"
+    "tsx": "^4.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
