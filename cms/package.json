@@ -13,15 +13,15 @@
     "reset": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload run ../migration/reset.ts"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "^3.0.0",
-    "@payloadcms/next": "^3.0.0",
-    "@payloadcms/richtext-lexical": "^3.0.0",
+    "@payloadcms/db-postgres": "^3.85.1",
+    "@payloadcms/next": "^3.85.1",
+    "@payloadcms/richtext-lexical": "^3.85.1",
     "cross-env": "^10.0.0",
-    "next": "^16.1.6",
-    "payload": "^3.0.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "sharp": "^0.32.6"
+    "next": "^16.2.9",
+    "payload": "^3.85.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sharp": "^0.35.1"
   },
   "devDependencies": {
     "@eslint/js": "^9",
